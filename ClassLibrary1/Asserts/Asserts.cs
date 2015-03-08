@@ -16,11 +16,10 @@ using OpenQA.Selenium.Support.UI;
 using NUnit.Framework;
 using Microsoft.VisualBasic.FileIO;
 
-namespace IMXLogin.Tests
+namespace IMX.Pages
 {
     class Asserts
     {
-        [FindBy]
         private static void isLoginSuccessful(string[] fields, IWebDriver driver)
         {
             if (fields[3] == "No")

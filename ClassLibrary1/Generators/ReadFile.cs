@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualBasic.FileIO;
 
-namespace IMXLogin.Generators
-{
+namespace IMX.Pages
+
     class ReadFile
     {
         public static TextFieldParser parser = new TextFieldParser(@"c:\temp\test.csv");

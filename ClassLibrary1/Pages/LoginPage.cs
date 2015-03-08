@@ -1,12 +1,14 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using IMXLogin.Generators;
 
-namespace IMXLogin.Pages
+namespace IMX.Pages
 {
-    class LoginPage
+    public class LoginPage
     {
         private IWebDriver driver;
+
+        public string username = UserGenerator.readUsername();
+        public string password = PasswordGenerator.readPassword();
 
         public LoginPage(IWebDriver driver)
         { this.driver = driver;
@@ -15,17 +17,15 @@ namespace IMXLogin.Pages
             throw new NoSuchWindowException("This is not the Login page");
         }
         //FirefoxDriver driver = new FirefoxDriver();
-        public string username = UserGenerator.readUsername();
-        public string password = PasswordGenerator.readPassword();
+
         
         public SearchPage Do(string username, string password)
+
+
         {
-            IWebElement element1 = driver.FindElement(By.CssSelector("#UserName"));
-            element1.SendKeys(username);
-            IWebElement element2 = driver.FindElement(By.CssSelector("#Password"));
-            element2.SendKeys(password);
-            IWebElement loginbutton = driver.FindElement(By.CssSelector(".btn"));
-            loginbutton.Click();
+            driver.FindElement(By.CssSelector("#UserName")).SendKeys(username);
+            driver.FindElement(By.CssSelector("#Password")).SendKeys(password);
+            driver.FindElement(By.CssSelector(".btn")).Click();
 
             return new SearchPage(driver);
         }

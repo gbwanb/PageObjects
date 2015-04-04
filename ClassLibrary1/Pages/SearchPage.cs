@@ -14,8 +14,8 @@ namespace IMX.Pages
         public SearchPage(IWebDriver driver)
         {
             this.driver = driver;
-            Boolean isPresent = driver.FindElement(By.CssSelector("#btnFTPOutputFile")).Size > 0;
-            if (isPresent == false)
+            IWebElement isPresent = driver.FindElement(By.CssSelector("#btnFTPOutputFile"));
+            if (isPresent == null)
                 throw new NoSuchElementException("This is not the Search page");
         }
 

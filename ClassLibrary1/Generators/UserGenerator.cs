@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -10,12 +10,12 @@ namespace IMX.Pages
 {
     public class UserGenerator
     {
-        static string[] fields = ReadFile.parser.ReadFields();
-
+        //static string[] fields = ReadFile.parser.ReadFields();
         public static string readUsername()
         {
-            String username = fields[1];
+            String username = ReadFile.readLoginDetailsFromCsv();
             return username;
         }
     }
 }
+*/

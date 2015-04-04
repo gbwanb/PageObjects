@@ -19,33 +19,29 @@ namespace IMX.Pages
         [Test]
         public void loginToImxMobileWeb()
         {
-           
+            ReadFile.readLoginDetailsFromCsv();
 
-            IWebDriver driver = new FirefoxDriver();
-                        
-            driver.Navigate().GoToUrl("https://gtsmobile.imxclient.com/IMXMobileWeb");
-
-            LoginPage Login = new LoginPage(driver);
-
-            SearchPage ConfirmOnSearchPage = Login.Do(UserGenerator.readUsername(), PasswordGenerator.readPassword());
-
-
+            if (ReadFile.readLoginDetailsFromCsv() != null)
+            {
+                Assert.True(AssertGenerator.readAssert() == "Yes");
+            }
+            else
+            {
+                Assert.True(AssertGenerator.readAssert() == "No");
+            }
                         /*IWebElement element1 = driver.FindElement(By.CssSelector("#UserName"));
                         element1.SendKeys(username);
                         IWebElement element2 = driver.FindElement(By.CssSelector("#Password"));
                         element2.SendKeys(password);
                         IWebElement loginbutton = driver.FindElement(By.CssSelector(".btn"));
-                        loginbutton.Click();*/
+                        loginbutton.Click();
 
-                        isLoginSuccessful(fields, driver);
+                        isLoginSuccessful(fields, driver);*/
+           // Login = ConfirmOnSearchPage.Logout();
 
-                        driver.Close();
-                    }
-
-                }
+        //    driver.Close();
             }
-        }
 
- 
-    
+       }
 }
+

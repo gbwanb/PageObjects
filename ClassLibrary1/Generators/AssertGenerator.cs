@@ -13,7 +13,7 @@ namespace IMX.Pages
         public static string readAssert()
         {
             String isValid = fields[3];
-            return isValid;
+            return  isValid;
         }
     }
 }

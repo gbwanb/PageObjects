@@ -28,34 +28,57 @@ namespace IMX.Pages
         if (driver.Title != "Admin Web")
             throw new NoSuchWindowException("This is not the Login page");
         }
+
+        By usernameLocator = By.CssSelector("#UserName");
+        By passwordLocator = By.CssSelector("#Password");
+        By loginButtonLocator = By.CssSelector(".btn");
         //FirefoxDriver driver = new FirefoxDriver();
 
+       
+        // This is the only place that "knows" how to enter a username
+
+
+        public LoginPage typeUsername(String username) {
+            driver.FindElement(usernameLocator).SendKeys(username);
+            return this;
+        }
+
+        public LoginPage typePassword(String password) {
+            driver.FindElement(passwordLocator).SendKeys(password);
+            return this;
+        }
+
+        public SearchPage clickLogin() {
+            driver.FindElement(loginButtonLocator).Click();
+            return new SearchPage(driver);    
+        }
         
         public SearchPage Do(TextFieldParser fileLocation)
         {
-            public static TextFieldParser parser = new TextFieldParser(@"fileLocation");
-        //using (TextFieldParser parser = new TextFieldParser(@"c:\temp\test.csv"))
+            //public static TextFieldParser parser = new TextFieldParser(@"fileLocation");
+            TextFieldParser parser = new TextFieldParser(@"c:\temp\test.csv");
             parser.TextFieldType = FieldType.Delimited;
             parser.SetDelimiters(",");
             while (!parser.EndOfData)
             {
                 //Processing row
                 string[] fields = parser.ReadFields();
-                foreach (string field in fields)
+                //foreach (string field in fields)
                 {
                     string username = fields[1];
                     string password = fields[2];
                     string valid = fields[3];
-            
-                    driver.FindElement(By.CssSelector("#UserName")).SendKeys(username);          
-                    driver.FindElement(By.CssSelector("#Password")).SendKeys(password);          
-                    driver.FindElement(By.CssSelector(".btn")).Click();
 
-                    return new SearchPage(driver);
+                    typeUsername(username);
+                    typePassword(password);
+                    clickLogin();
+                    {
+                        break;
+                    }
                 }
-                else
             }
         }
+}
  
 
         
